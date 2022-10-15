@@ -1,0 +1,9 @@
+import sys
+f= open("sample_input.txt", "r")
+sys.stdin =f
+k= sys.stdin
+
+T = int(input())
+# 여러개의 테스트 케이스가 주어지므로, 각각을 처리합니다.
+for test_case in k:
+    day,month,three_months,

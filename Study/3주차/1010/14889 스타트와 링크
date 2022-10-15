@@ -1,0 +1,22 @@
+from itertools import combinations
+
+n = int(input())
+group =[]
+for i in range(n):
+    l = list(map(int,input().split()))
+    group.append(l)
+members=[i for i in range(n)]
+possible_team=[]
+
+min = 10000
+for team in list(combinations(members,n//2)):
+    possible_team.append(team)
+
+
+for i in range(len(possible_team)//2):
+    team = possible_team[i] # (1,2)
+    stat_A = 0
+    for j in range(n//2):
+        member = team[j]
+        for k in team:
+            stat_A += group
