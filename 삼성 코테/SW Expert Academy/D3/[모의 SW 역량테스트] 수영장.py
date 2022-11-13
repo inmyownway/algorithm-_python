@@ -1,5 +1,5 @@
 import sys
-f= open("sample_input.txt", "r")
+f= open("../sample_input.txt", "r")
 sys.stdin =f
 k= sys.stdin
 
