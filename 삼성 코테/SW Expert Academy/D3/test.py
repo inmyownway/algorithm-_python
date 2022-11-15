@@ -1,4 +1,3 @@
-array = []
-for i in range(100):
-    array.append(list(map(int, input().split())))
-print(array)
+
+for i in range(10,-1,-1):
+    print(i)
