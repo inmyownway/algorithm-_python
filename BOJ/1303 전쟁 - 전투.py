@@ -2,41 +2,46 @@ from collections import deque
 
 dx= [0,0,1,-1]
 dy= [1,-1,0,0]
-
-def bfs(graph, i ,j):
-    n = len(graph)
-    q = deque()
-    q.append((i,j))
-    graph[i][j] = 0
-    count = 1
-
-    while q:
-        x,y =q.popleft()
-        for i in range(4):
-            nx = x + dx[i]
-            ny = y + dy[i]
-            if nx < 0 or nx >= n or ny < 0 or ny >= n:
-                continue
-            if graph[nx][ny] == 1:
-                graph[nx][ny]=0
-                q.append((nx, ny))
-                count+=1
-    return count
-
-
-n = int(input())
+n,m=map(int,input().split())
+# n 이 가로
+# m 이 세로
 graph=[]
-for i in range(n):
-    graph.append(list(map(int,input())))
+for i in range(m):
+    temp=list(input())
+    tl=[]
+    for t in temp:
+        tl.append(t)
+    graph.append(tl)
 
 
-cnt =[]
-for i in range(n):
+visited=[[False]*n for _ in range(m)]
+
+def bfs(c,x,y):
+    q=deque()
+    q.append((x,y))
+    visited[x][y]=True
+    count=1
+    while q:
+        x,y=q.popleft()
+        for i in range(4):
+            nx=x+dx[i]
+            ny=y+dy[i]
+            if 0<=nx < m and 0<= ny <n and visited[nx][ny]==False and graph[nx][ny]==c:
+                q.append((nx,ny))
+                visited[nx][ny]=True
+                count+=1
+    return count*count
+
+W=0
+B=0
+for i in range(m):
     for j in range(n):
-        if graph[i][j] == 1:
-            c = bfs(graph, i, j)
-            cnt.append(c)
-cnt.sort()
-print(len(cnt))
-for i in cnt:
-    print(i)
+        if visited[i][j]==False:
+            if graph[i][j]=='W':
+                W+=bfs('W',i,j)
+            elif graph[i][j]=='B':
+                B+=bfs('B',i,j)
+           #
+
+print(W,B)
+
